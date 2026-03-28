@@ -1,13 +1,33 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-accent: #2563eb;
-  --color-accent-light: #3b82f6;
-  --color-marked: #dcfce7;
-  --color-marked-border: #22c55e;
-  --color-bingo: #fbbf24;
+  /* ── Witcher color palette ── */
+  --color-ember:        #e8590c;
+  --color-ember-light:  #ff7c2f;
+  --color-ember-dark:   #b03d00;
+  --color-fire-gold:    #f59f00;
+  --color-fire-gold-light: #ffcc33;
+  --color-parchment:    #e8dcc8;
+  --color-parchment-dim: #c4b59a;
+  --color-bronze:       #9b7535;
+  --color-bronze-light: #c49a3c;
+  --color-obsidian:     #0d0d0d;
+  --color-charcoal:     #1a1714;
+  --color-stone:        #2a2520;
+  --color-stone-light:  #3d362f;
+  --color-marked:       #3d1f00;
+  --color-marked-border: #e8590c;
+  --color-bingo:        #f59f00;
+  --color-winning:      #2a1800;
+  --color-winning-border: #f59f00;
+
+  /* ── Witcher typography ── */
+  --font-display: 'Cinzel Decorative', 'Times New Roman', serif;
+  --font-heading: 'Cinzel', 'Times New Roman', serif;
+  --font-body:    'Crimson Text', Georgia, serif;
 }
 
+/* ── Base styles ── */
 html,
 body,
 #root {
@@ -16,6 +36,60 @@ body,
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body);
+  background-color: #0d0d0d;
+  color: #e8dcc8;
   -webkit-tap-highlight-color: transparent;
+  background-image:
+    radial-gradient(ellipse at 50% 0%, #2a1800 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 100%, #1a0d00 0%, transparent 50%);
 }
+
+/* ── Keyframe animations ── */
+@keyframes ember-glow {
+  0%, 100% { text-shadow: 0 0 8px #e8590c, 0 0 20px #f59f00, 0 0 40px #b03d00; }
+  50%       { text-shadow: 0 0 16px #ff7c2f, 0 0 32px #f59f00, 0 0 60px #e8590c; }
+}
+
+@keyframes fire-pulse {
+  0%, 100% { box-shadow: 0 0 6px #e8590c, inset 0 0 8px rgba(232, 89, 12, 0.3); }
+  50%       { box-shadow: 0 0 18px #f59f00, inset 0 0 14px rgba(245, 159, 0, 0.4); }
+}
+
+@keyframes winning-blaze {
+  0%, 100% { box-shadow: 0 0 10px #f59f00, 0 0 24px #e8590c, inset 0 0 10px rgba(245, 159, 0, 0.4); }
+  50%       { box-shadow: 0 0 22px #ffcc33, 0 0 44px #f59f00, inset 0 0 18px rgba(255, 204, 51, 0.5); }
+}
+
+@keyframes modal-rise {
+  from { opacity: 0; transform: scale(0.88) translateY(16px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  45%       { opacity: 0.92; }
+  50%       { opacity: 0.85; }
+  55%       { opacity: 0.95; }
+}
+
+@keyframes rune-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── Utility classes ── */
+.ember-glow     { animation: ember-glow 2.5s ease-in-out infinite; }
+.fire-pulse     { animation: fire-pulse 1.8s ease-in-out infinite; }
+.winning-blaze  { animation: winning-blaze 1.4s ease-in-out infinite; }
+.flicker        { animation: flicker 3s ease-in-out infinite; }
+
+/* ── Ornate border helper ── */
+.border-bronze {
+  border-color: #9b7535;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #1a1714; }
+::-webkit-scrollbar-thumb { background: #9b7535; border-radius: 3px; }
